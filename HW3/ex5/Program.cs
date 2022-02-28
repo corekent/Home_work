@@ -5,27 +5,20 @@ Console.WriteLine("Введите В:");
 int b = Convert.ToInt32(Console.ReadLine());
 int sum = 0;
 
-if (a > b)
+if (a < b)
 {
-    int i;
-    for (i = b + 1; i < a; i++)
-    {
-        if (i % 7 == 0)
-        {
-            sum += i;
-        }
-    }
-    Console.WriteLine($"Результат: {sum}");
+    int tmp = a;
+    a = b;
+    b = tmp;
 }
-else
+
+for ( int i = a + 1; i < b; i++)
 {
-    int i;
-    for (i = a + 1; i < b; i++)
-    {
-        if (i % 7 == 0)
-        {
-            sum += i;
-        }
-    }
-    Console.WriteLine($"Результат: {sum}");
+     if (i % 7 == 0)
+     {
+         sum += i;
+     }
 }
+
+Console.WriteLine($"Результат: {sum}");
+
