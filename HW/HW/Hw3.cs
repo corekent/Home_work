@@ -35,13 +35,20 @@ namespace HW
         public void SolveEx2()
         {
             int a = EnteringNumber("Введите А: ");
-            int[] answers = SearchForDivisors(a);
 
-            for (int i = 0; i < answers.Length; i++)
+            if (a==0)
             {
-                Console.Write(answers[i] + " ");
+                throw new Exception("Введите А, не равное нулю");
             }
+            else
+            {
+                int[] answers = SearchForDivisors(a);
 
+                for (int i = 0; i < answers.Length; i++)
+                {
+                    Console.Write(answers[i] + " ");
+                }
+            }   
         }
 
         public int[] SearchForDivisors(int a)
@@ -82,9 +89,9 @@ namespace HW
         public void SolveEx4()
         {
             int a = EnteringNumber("Введите А: ");
-            Console.WriteLine(FindeLargestDivisor(a));
+            Console.WriteLine(FindLargestDivisor(a));
         }
-        public int FindeLargestDivisor(int a)
+        public int FindLargestDivisor(int a)
         {
             int divisor = 0;
             for (int i = 1; i < a; i++)
@@ -105,7 +112,15 @@ namespace HW
         }
         public int FindTheSumOfElementsThatAreDivisibleBySeven(int a, int b)
         {
+            if (b > a)
+            {
+                int tmp = a;
+                a = b;
+                b = tmp;
+            }
+
             int sum = 0;
+
             if (a > b)
             {
                 for (int i = b + 1; i < a; i++)
@@ -119,14 +134,7 @@ namespace HW
             }
             else
             {
-                for (int i = a + 1; i < b; i++)
-                {
-                    if (i % 7 == 0)
-                    {
-                        sum += i;
-                    }
-                }
-                return sum;
+                return 0;
             }
         }
 
@@ -158,33 +166,30 @@ namespace HW
             Console.WriteLine($"Наибольший общий делитель: {FindGreatestCommonDivisor(a, b)}");
         }
         public int FindGreatestCommonDivisor(int a, int b)
-        {
-            int c;
-
+        {            
             if (a < b)
             {
                 int tmp = a;
                 a = b;
                 b = tmp;
             }
+
             if (a != b)
             {
                 if (a % b > 0)
                 {
                     do
                     {
-                        c = a % b;
                         a = b;
-                        b = c;
+                        b = a % b;
                     }
-                    while (c == 0);
+                    while (a % b == 0);
                     return b;
                 }
                 else
                 {
                     return b;
                 }
-
             }
             else
             {
