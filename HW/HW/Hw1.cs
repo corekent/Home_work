@@ -28,8 +28,16 @@ namespace HW
             int numerator = EnteringNumber("Числитель: ");
             int denominator = EnteringNumber("Знаменатель: ");
 
-            Console.WriteLine($"{numerator}/{denominator} = {Division(numerator, denominator)}");
-            Console.WriteLine($"Остаток от деления: {CalculateTheRemainderOfDivision(numerator, denominator)}");
+            if (denominator == 0)
+            {
+                throw new Exception("на 0 делить нельзя");
+            }
+            else
+            {
+                Console.WriteLine($"{numerator}/{denominator} = {Division(numerator, denominator)}");
+                Console.WriteLine($"Остаток от деления: {CalculateTheRemainderOfDivision(numerator, denominator)}");
+            }
+            
         }
         public int Division(int numerator, int denominator)
         {
@@ -44,8 +52,16 @@ namespace HW
         {
             int a = EnteringNumber("Введите число 1: ");
             int b = EnteringNumber("Введите число 2: ");
-            double c = Math(a, b);
-            Console.WriteLine($"Ответ: {c}");
+
+            if (b - a == 0)
+            {
+                throw new Exception("Деление невозможно, введите другие числа");
+            }
+            else
+            {
+                double c = Math(a, b);
+                Console.WriteLine($"Ответ: {c}");
+            }            
         }
         public double Math(int a, int b)
         {
@@ -83,8 +99,15 @@ namespace HW
         }
         public double SolveTheLinearEquation(double a, double b, double c)
         {
-            double x = (c - b) / a * 0.1;
-            return x;
+            if (a==0)
+            {
+                throw new Exception("Нельзя вычислить, введите С отличное от нуля");
+            }
+            else
+            {
+                double x = (c - b) / a * 0.1;
+                return x;
+            }            
         }
 
         //ex5
@@ -95,9 +118,16 @@ namespace HW
             double y2 = EnteringNumber("Введите y2: ");
             double x2 = EnteringNumber("Введите x2: ");
 
-            double k = FindTheCoefficientK(y1, x1, y2, x2);
-            double b = FindTheCoefficientB(y1, x1, y2, x2, k);
-            Console.WriteLine($"Уравнение прямой: y={k}*x+{b}");
+            if (x1 == x2)
+            {
+                Console.WriteLine($"Уравнение прямой: y={x1}");
+            }
+            else
+            {
+                double k = FindTheCoefficientK(y1, x1, y2, x2);
+                double b = FindTheCoefficientB(y1, x1, y2, x2, k);
+                Console.WriteLine($"Уравнение прямой: y={k}*x+{b}");
+            }            
         }
         public double FindTheCoefficientK(double y1, double x1, double y2, double x2)
         {
