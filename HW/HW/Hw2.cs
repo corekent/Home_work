@@ -46,24 +46,26 @@ namespace HW
         }
         public int DetermineWhichQuarterAPointBelongsTo(int x, int y)
         {
-            int quarter;
-            if ((x >= 0) && (y >= 0))
+            if (x == 0 && y == 0)
             {
-                quarter = 1;
+                throw new Exception("Точка лежит на оси");
+            }
+            else if((x >= 0) && (y >= 0))
+            {
+                return 1;
             }
             else if ((x < 0) && (y >= 0))
             {
-                quarter = 2;
+                return 2;
             }
             else if ((x < 0) && (y < 0))
             {
-                quarter = 3;
+                return 3;
             }
-            else
+            else 
             {
-                quarter = 4;
+                return 4;
             }
-            return quarter;
         }
 
         public void SolveEx3()
@@ -110,7 +112,6 @@ namespace HW
                 int[] arr = { b, a, c};
                 return arr;
             }
-
         }
 
         //ex4
