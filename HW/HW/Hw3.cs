@@ -53,7 +53,6 @@ namespace HW
 
         public int[] SearchForDivisors(int a)
         {
-            int[] array = new int[0];
             int count = 0;
 
             for (int divider = 1; divider < 1000; divider++)
@@ -62,8 +61,18 @@ namespace HW
                 if (resoult == 0)
                 {
                     count++;
-                    Array.Resize(ref array, count);
-                    array[count - 1] = divider;
+                }
+            }
+
+            int[] array = new int[count-1];
+            int tmp = 0;
+
+            for (int divider = 1; divider < 1000; divider++)
+            {
+                if (divider % a == 0)
+                {
+                    array[tmp] = divider;
+                    tmp++;
                 }
             }
 
@@ -338,6 +347,7 @@ namespace HW
             }
 
             int[] arr = new int[count];
+            int secondTmp = 0;
 
             for (int i = 1; i != a; i++)
             {
@@ -365,7 +375,8 @@ namespace HW
 
                 if (sumEven > sumOdd)
                 {
-                    arr[i-1] = i;
+                    arr[secondTmp] = i;
+                    secondTmp++;
                 }
             }
             return arr;
