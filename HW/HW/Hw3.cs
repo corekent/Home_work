@@ -36,9 +36,9 @@ namespace HW
         {
             int a = EnteringNumber("Введите А: ");
 
-            if (a==0)
+            if (a<=0)
             {
-                throw new Exception("Введите А, не равное нулю");
+                Console.WriteLine(0); ;
             }
             else
             {
@@ -141,7 +141,14 @@ namespace HW
         public void SolveEx6()
         {
             int n = EnteringNumber("Введите N: ");
-            Console.WriteLine($"Результат: {FindNumberOfTheFibonacciSeriesByNumber(n)}");
+            if (n<0)
+            {
+                throw new Exception("n must be >0");
+            }
+            else
+            {
+                Console.WriteLine($"Результат: {FindNumberOfTheFibonacciSeriesByNumber(n)}");
+            }            
         }
         public int FindNumberOfTheFibonacciSeriesByNumber(int n)
         {
@@ -281,16 +288,55 @@ namespace HW
         public void SolveEx11()
         {
             int a = EnteringNumber("Введите число: ");
-            int[] array = SearchForNumbersWhoseSumOfEvenDigitsIsGreaterThanTheSumOfOddDigits(a);
-            for (int i = 0; i < array.Length; i++)
+
+            if (a<=0)
             {
-                Console.WriteLine(array[i]);
+                throw new Exception("a must be >0");
             }
+            else
+            {
+                int[] array = SearchForNumbersWhoseSumOfEvenDigitsIsGreaterThanTheSumOfOddDigits(a);
+                for (int i = 0; i < array.Length; i++)
+                {
+                    Console.WriteLine(array[i]);
+                }
+            }            
         }
 
         public int[] SearchForNumbersWhoseSumOfEvenDigitsIsGreaterThanTheSumOfOddDigits(int a)
         {
             int count = 0;
+            
+            for (int i = 1; i != a; i++)
+            {
+                int tmp = i;
+                int sumEven = 0;
+                int sumOdd = 0;
+
+                if (i % 10 > 9)
+                {
+                    do
+                    {
+                        tmp /= 10;
+                    }
+                    while (tmp > 9);
+                }
+
+                if (tmp % 2 == 0)
+                {
+                    sumEven += tmp;
+                }
+                else
+                {
+                    sumOdd += tmp;
+                }
+
+                if (sumEven > sumOdd)
+                {
+                    count++;                    
+                }
+            }
+
             int[] arr = new int[count];
 
             for (int i = 1; i != a; i++)
@@ -319,9 +365,7 @@ namespace HW
 
                 if (sumEven > sumOdd)
                 {
-                    count++;
-                    Array.Resize(ref arr, count);
-                    arr[count - 1] = i;
+                    arr[i-1] = i;
                 }
             }
             return arr;
